@@ -31,15 +31,15 @@ class RingBufferTests(unittest.TestCase):
         self.assertEqual(self.buffer.get(), ['f', 'b', 'c', 'd', 'e'])
 
     def test_adding_many_elements_to_full_buffer(self):
-        self.buffer.append('a')
-        self.buffer.append('b')
-        self.buffer.append('c')
-        self.buffer.append('d')
-        self.buffer.append('e')
-        self.buffer.append('f')
-        self.buffer.append('g')
-        self.buffer.append('h')
-        self.buffer.append('i')
+        self.buffer.append('a') # a
+        self.buffer.append('b') # a b
+        self.buffer.append('c') # a b c 
+        self.buffer.append('d') # a b c d
+        self.buffer.append('e') # a b c d e
+        self.buffer.append('f') # f b c d e
+        self.buffer.append('g') # f g c d e
+        self.buffer.append('h') # f g h d e
+        self.buffer.append('i') # f g h i e
         self.assertEqual(self.buffer.get(), ['f', 'g', 'h', 'i', 'e'])
 
     def test_adding_50_elements_to_buffer(self):
